@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { IntroLoader, IntroProvider } from "@/components/intro-loader";
 import { LenisProvider } from "@/components/lenis-provider";
 import { siteConfig } from "@/constants";
 import { helveticaNeue } from "@/lib/fonts";
@@ -19,9 +20,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col font-sans">
         <LenisProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <IntroProvider>
+            <IntroLoader />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </IntroProvider>
         </LenisProvider>
       </body>
     </html>
