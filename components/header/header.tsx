@@ -4,13 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { premierElLogo } from "@/assets";
+import { useIntro, INTRO_EASE } from "@/components/intro-loader";
 import { Container } from "@/components/layout";
+import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/constants";
 import { cn } from "@/lib/utils";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const menuId = useId();
+  const { isReady, reduceMotion } = useIntro();
 
   useEffect(() => {
     if (!open) return;
@@ -34,7 +37,24 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-[60]",
+        !reduceMotion && "transition-[opacity,transform]",
+        !isReady
+          ? "pointer-events-none -translate-y-3 opacity-0"
+          : "translate-y-0 opacity-100",
+        reduceMotion && !isReady && "translate-y-0"
+      )}
+      style={
+        reduceMotion
+          ? undefined
+          : {
+              transitionDuration: "450ms",
+              transitionTimingFunction: INTRO_EASE,
+            }
+      }
+    >
       <Container className="flex items-center justify-center py-4 md:py-8">
         <nav
           aria-label="Primary"
@@ -63,7 +83,15 @@ export function Header() {
               <ul className="hidden items-center gap-8 text-base leading-6 font-medium text-neutral-800 md:flex">
                 {siteConfig.nav.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="whitespace-nowrap">
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "relative whitespace-nowrap transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
+                        "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-200 after:ease-[cubic-bezier(0.23,1,0.32,1)]",
+                        "[@media(hover:hover)_and_(pointer:fine)]:hover:text-primary",
+                        "[@media(hover:hover)_and_(pointer:fine)]:hover:after:scale-x-100"
+                      )}
+                    >
                       {item.label}
                     </Link>
                   </li>
@@ -107,13 +135,21 @@ export function Header() {
 
             <Link
               href={siteConfig.cta.href}
-              className="relative hidden items-center justify-center overflow-hidden bg-neutral-100 px-4 py-3 text-base leading-6 font-medium whitespace-nowrap text-neutral-800 transition-colors duration-300 before:absolute before:inset-0 before:bg-[linear-gradient(180deg,#224cff_0%,#00c1d5_100%)] before:opacity-0 before:transition-opacity before:duration-300 hover:text-neutral-100 hover:before:opacity-100 md:flex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "group/nav-cta relative isolate hidden h-auto self-stretch items-center overflow-hidden bg-white px-4 text-base leading-6 font-medium whitespace-nowrap text-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] md:flex",
+                "[@media(hover:hover)_and_(pointer:fine)]:hover:text-primary-foreground"
+              )}
               onClick={() => setOpen(false)}
             >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 z-0 -translate-x-[101%] bg-primary transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover/nav-cta:translate-x-0"
+              />
               <span className="relative z-10">{siteConfig.cta.label}</span>
             </Link>
           </div>
-
           <div
             id={menuId}
             className={cn(
@@ -127,7 +163,7 @@ export function Header() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="block rounded-lg px-2 py-2.5"
+                      className="block rounded-lg px-2 py-2.5 transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-primary"
                       onClick={() => setOpen(false)}
                     >
                       {item.label}
@@ -137,7 +173,12 @@ export function Header() {
                 <li>
                   <Link
                     href={siteConfig.cta.href}
-                    className="mt-1 block rounded-lg bg-brand-navy px-2 py-2.5 text-center text-neutral-100"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "secondary" }),
+                      "mt-1 h-auto w-full rounded-lg border-transparent px-2 py-2.5 text-center text-base font-medium shadow-none drop-shadow-none"
+                    )}
                     onClick={() => setOpen(false)}
                   >
                     {siteConfig.cta.label}

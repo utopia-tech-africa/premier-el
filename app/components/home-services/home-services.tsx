@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { ArrowSquareUpRightLight } from "@/assets";
+import { ArrowSquareUpRight } from "@/assets";
+import { Reveal } from "@/components/reveal";
 import { Container } from "@/components/layout";
 import { buttonVariants } from "@/components/ui/button";
+import { siteConfig } from "@/constants";
 import { cn } from "@/lib/utils";
+import { HomeIndustries } from "../home-industries";
 
 const services = [
   {
@@ -82,7 +85,7 @@ function ServiceCard({
   return (
     <article
       className={cn(
-        "flex flex-col overflow-clip rounded-lg border border-neutral-500/80 bg-neutral-300/30 p-2",
+        "flex h-full flex-col overflow-clip rounded-lg border border-neutral-500/30 bg-neutral-300/30 p-2",
         className
       )}
     >
@@ -122,57 +125,73 @@ export function HomeServices() {
     <section
       id="services"
       aria-label="Our services"
-      className="bg-neutral-100 py-12 md:py-16"
+      className="bg-neutral-100 pt-16 md:pt-section"
     >
-      <Container className="flex flex-col gap-6">
-        <div className="flex flex-col items-center gap-2.5">
-          <div className="flex w-full items-center gap-3">
-            <img
-              src="/icons/process-line-left.svg"
-              alt=""
-              className="hidden h-[3px] min-w-0 flex-1 md:block"
-            />
-            <p className="shrink-0 text-sm leading-[18px] font-bold whitespace-nowrap text-[#a87a1b]">
-              Our services
-            </p>
-            <img
-              src="/icons/process-line-right.svg"
-              alt=""
-              className="hidden h-[3px] min-w-0 flex-1 md:block"
-            />
+      <Container className="flex flex-col gap-20">
+        <div className="flex flex-col gap-6">
+          <Reveal>
+            <div className="flex flex-col items-center gap-2.5">
+              <div className="flex w-full items-center gap-3">
+                <img
+                  src="/icons/process-line-left.svg"
+                  alt=""
+                  className="hidden h-[3px] min-w-0 flex-1 md:block"
+                />
+                <p className="shrink-0 text-sm leading-[18px] font-bold whitespace-nowrap text-[#a87a1b]">
+                  Our services
+                </p>
+                <img
+                  src="/icons/process-line-right.svg"
+                  alt=""
+                  className="hidden h-[3px] min-w-0 flex-1 md:block"
+                />
+              </div>
+
+              <div className="flex w-full flex-col items-center gap-3 text-center">
+                <h2 className="text-2xl leading-[1.2] font-bold text-neutral-900 md:text-[2rem]">
+                  Start your peeple success journey
+                </h2>
+                <p className="text-base leading-[1.3] text-neutral-800 md:text-lg">
+                  Explore our core offerings and resources
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
+            {services.map((service, index) => (
+              <Reveal
+                key={service.title}
+                delay={index * 70}
+                className={cn("h-full min-h-0", service.className)}
+              >
+                <ServiceCard {...service} className="h-full" />
+              </Reveal>
+            ))}
           </div>
 
-          <div className="flex w-full flex-col items-center gap-3 text-center">
-            <h2 className="text-2xl leading-[1.2] font-bold text-neutral-900 md:text-[2rem]">
-              Start your peeple success journey
-            </h2>
-            <p className="text-base leading-[1.3] text-neutral-800 md:text-lg">
-              Explore our core offerings and resources
-            </p>
-          </div>
+          <Reveal delay={120}>
+            <div className="flex flex-col items-center gap-2.5">
+              <p className="text-center text-base leading-[1.3] text-neutral-800 md:text-lg">
+                Still not sure where you fit? Let&apos;s talk it through
+              </p>
+              <Link
+                href={siteConfig.cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "h-auto gap-2.5 rounded px-6 py-3 text-base font-normal"
+                )}
+              >
+                Book a consultation
+                <ArrowSquareUpRight />
+              </Link>
+            </div>
+          </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
-          {services.map((service) => (
-            <ServiceCard key={service.title} {...service} />
-          ))}
-        </div>
-
-        <div className="flex flex-col items-center gap-2.5">
-          <p className="text-center text-base leading-[1.3] text-neutral-800 md:text-lg">
-            Still not sure where you fit? Let&apos;s talk it through
-          </p>
-          <Link
-            href="/#contact"
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "h-auto gap-2.5 rounded px-6 py-3 text-base font-normal"
-            )}
-          >
-            Book a consultation
-            <ArrowSquareUpRightLight />
-          </Link>
-        </div>
+        <HomeIndustries />
       </Container>
     </section>
   );

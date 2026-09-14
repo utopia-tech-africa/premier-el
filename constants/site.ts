@@ -4,7 +4,6 @@ export const siteConfig = {
     "Premier EL Consult aids organizations and investors in growth through strategic advisory, leadership development, and market entry solutions.",
   nav: [
     { label: "Services", href: "/#services" },
-    { label: "Case studies", href: "/#case-studies" },
     { label: "About us", href: "/#about" },
   ],
   footerNav: [
@@ -22,5 +21,8 @@ export const siteConfig = {
     { label: "Terms of Use", href: "/terms" },
     { label: "Cookie Settings", href: "/cookies" },
   ],
-  cta: { label: "Book a call", href: "/#contact" },
+  cta: {
+    label: "Book a consult",
+    href: "https://calendly.com/premierelconsult/30min",
+  },
 } as const;

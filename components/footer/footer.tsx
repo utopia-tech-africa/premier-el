@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowSquareUpRightLight,
+  ArrowSquareUpRight,
   EnvelopeIcon,
   InstagramLogo,
   LinkedinLogo,
@@ -95,7 +95,7 @@ export function Footer() {
                   )}
                 >
                   Subscribe
-                  <ArrowSquareUpRightLight />
+                  <ArrowSquareUpRight />
                 </Button>
               </div>
               <p className="text-xs leading-[1.5] text-neutral-600">

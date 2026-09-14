@@ -5,7 +5,9 @@ import {
   IconMedal,
   IconShieldCheck,
 } from "@/assets";
+import { Reveal } from "@/components/reveal";
 import { Container } from "@/components/layout";
+import { HomeMissionStatement } from "../home-mission-statement";
 
 const topPrinciples = [
   {
@@ -67,25 +69,37 @@ export function HomeOurPrinciples() {
     <section
       id="principles"
       aria-label="Principles we live by"
-      className="bg-neutral-100 py-12 md:py-16"
+      className="bg-neutral-100 pt-16 md:pt-section"
     >
-      <Container className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-[95px]">
-        <h2 className="shrink-0 text-2xl leading-[1.2] font-bold whitespace-nowrap text-neutral-900 md:text-3xl">
-          Principles we live by
-        </h2>
+      <Container className="flex flex-col gap-16 md:gap-[58px]">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-[95px]">
+          <Reveal>
+            <h2 className="shrink-0 text-2xl leading-[1.2] font-bold whitespace-nowrap text-neutral-900 md:text-3xl">
+              Principles we live by
+            </h2>
+          </Reveal>
 
-        <div className="flex min-w-0 flex-1 flex-col gap-6">
-          <div className="grid gap-6 sm:grid-cols-2 sm:gap-[38px]">
-            {topPrinciples.map((item) => (
-              <PrincipleCard key={item.title} {...item} />
-            ))}
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-            {bottomPrinciples.map((item) => (
-              <PrincipleCard key={item.title} {...item} />
-            ))}
+          <div className="flex min-w-0 flex-1 flex-col gap-6">
+            <div className="grid gap-6 sm:grid-cols-2 sm:gap-[38px]">
+              {topPrinciples.map((item, index) => (
+                <Reveal key={item.title} delay={80 + index * 70}>
+                  <PrincipleCard {...item} />
+                </Reveal>
+              ))}
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+              {bottomPrinciples.map((item, index) => (
+                <Reveal key={item.title} delay={200 + index * 70}>
+                  <PrincipleCard {...item} />
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
+
+        <Reveal delay={120}>
+          <HomeMissionStatement />
+        </Reveal>
       </Container>
     </section>
   );

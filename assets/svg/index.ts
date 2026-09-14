@@ -1,3 +1,4 @@
+export { ArrowSquareUpRight } from "./arrow-square-up-right";
 export { ArrowSquareUpRightDark } from "./arrow-square-up-right-dark";
 export { ArrowSquareUpRightLight } from "./arrow-square-up-right-light";
 export { IconCompass } from "./icon-compass";

@@ -1,19 +1,12 @@
-import { Container } from "@/components/layout";
-
 export function HomeMissionStatement() {
   return (
-    <section
+    <p
       id="mission"
-      aria-label="Mission statement"
-      className="bg-neutral-100 py-12 md:py-16"
+      className="mx-auto max-w-[963px] text-center text-xl leading-[1.2] font-black text-neutral-900 md:text-2xl"
     >
-      <Container className="flex justify-center">
-        <p className="max-w-[963px] text-center text-xl leading-[1.2] font-black text-neutral-900 md:text-2xl">
-          We&apos;re not here to just give advice. We&apos;re here to help you
-          turn that advice into action and to stick around until it works. We
-          help businesses grow. We develop leaders. We transform organizations.
-        </p>
-      </Container>
-    </section>
+      We&apos;re not here to just give advice. We&apos;re here to help you turn
+      that advice into action and to stick around until it works. We help
+      businesses grow. We develop leaders. We transform organizations.
+    </p>
   );
 }

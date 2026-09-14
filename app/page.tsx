@@ -2,8 +2,6 @@ import {
   HomeCta,
   HomeFounder,
   HomeHero,
-  HomeIndustries,
-  HomeMissionStatement,
   HomeOurPrinciples,
   HomeOurProcess,
   HomeServices,
@@ -17,10 +15,8 @@ export default function HomePage() {
       <HomeWhoAreWe />
       <HomeOurProcess />
       <HomeOurPrinciples />
-      <HomeMissionStatement />
       <HomeFounder />
       <HomeServices />
-      <HomeIndustries />
       <HomeCta />
     </>
   );
