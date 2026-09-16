@@ -58,23 +58,20 @@ export function Header() {
       <Container className="flex items-center justify-center py-4 md:py-8">
         <nav
           aria-label="Primary"
-          className={cn(
-            "w-full max-w-lg overflow-hidden border-[0.5px] border-neutral-500 bg-neutral-100 shadow-[2px_2px_17px_0px_rgba(0,0,0,0.15)] md:w-auto md:max-w-none",
-            open ? "rounded-3xl" : "rounded-full"
-          )}
+          className="w-full max-w-lg overflow-hidden rounded-3xl border-[0.5px] border-neutral-500/30 bg-neutral-100 shadow-[2px_2px_17px_0px_rgba(0,0,0,0.15)] md:w-auto md:max-w-none"
         >
-          <div className="flex items-stretch">
-            <div className="flex min-w-0 flex-1 items-center gap-4 px-4 py-3 sm:gap-8 sm:px-6">
+          <div className="flex h-12 items-stretch md:h-auto">
+            <div className="flex min-w-0 flex-1 items-center gap-4 px-4 py-0 sm:gap-8 sm:px-6 md:py-3">
               <Link
                 href="/"
-                className="relative h-[25px] w-[106px] shrink-0"
+                className="relative h-5 w-[85px] shrink-0 md:h-[25px] md:w-[106px]"
                 onClick={() => setOpen(false)}
               >
                 <Image
                   src={premierElLogo}
                   alt={siteConfig.name}
                   fill
-                  sizes="106px"
+                  sizes="(max-width: 767px) 85px, 106px"
                   className="object-contain object-left"
                   priority
                 />
@@ -113,19 +110,19 @@ export function Header() {
                 >
                   <span
                     className={cn(
-                      "absolute top-[7px] left-0 block h-0.5 w-5 bg-current transition-transform duration-200",
+                      "absolute top-[4px] left-0 block h-0.5 w-5 bg-current transition-[transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
                       open && "translate-y-[5px] rotate-45"
                     )}
                   />
                   <span
                     className={cn(
-                      "absolute top-[12px] left-0 block h-0.5 w-5 bg-current transition-opacity duration-200",
+                      "absolute top-[9px] left-0 block h-0.5 w-5 bg-current transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
                       open && "opacity-0"
                     )}
                   />
                   <span
                     className={cn(
-                      "absolute top-[17px] left-0 block h-0.5 w-5 bg-current transition-transform duration-200",
+                      "absolute top-[14px] left-0 block h-0.5 w-5 bg-current transition-[transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
                       open && "-translate-y-[5px] -rotate-45"
                     )}
                   />
@@ -153,12 +150,29 @@ export function Header() {
           <div
             id={menuId}
             className={cn(
-              "grid transition-[grid-template-rows] duration-200 md:hidden",
-              open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+              "grid md:hidden",
+              reduceMotion
+                ? open
+                  ? "grid-rows-[1fr]"
+                  : "grid-rows-[0fr]"
+                : cn(
+                    "transition-[grid-template-rows]",
+                    open
+                      ? "grid-rows-[1fr] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                      : "grid-rows-[0fr] duration-[280ms] ease-[cubic-bezier(0.32,0.72,0,1)]"
+                  )
             )}
           >
             <div className="overflow-hidden">
-              <ul className="flex flex-col gap-1 border-t border-neutral-200 px-4 py-3 text-base leading-6 font-medium text-neutral-800">
+              <ul
+                className={cn(
+                  "flex flex-col gap-1 border-t border-neutral-200 px-4 py-3 text-base leading-6 font-medium text-neutral-800",
+                  !reduceMotion && "transition-opacity",
+                  open
+                    ? "opacity-100 duration-150 delay-75 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                    : "pointer-events-none opacity-0 duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                )}
+              >
                 {siteConfig.nav.map((item) => (
                   <li key={item.href}>
                     <Link
@@ -176,7 +190,7 @@ export function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      buttonVariants({ variant: "secondary" }),
+                      buttonVariants({ variant: "default" }),
                       "mt-1 h-auto w-full rounded-lg border-transparent px-2 py-2.5 text-center text-base font-medium shadow-none drop-shadow-none"
                     )}
                     onClick={() => setOpen(false)}

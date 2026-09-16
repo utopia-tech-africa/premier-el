@@ -74,9 +74,9 @@ export function HomeWhoAreWe() {
             </p>
           </div>
         </Reveal>
-        <Reveal delay={260}>
-          {/* Blend on an untransformed wrapper so Reveal/parallax transforms don't kill it */}
-          <div className="mix-blend-luminosity">
+        {/* Blend outside Reveal/parallax transforms so mix-blend isn't isolated */}
+        <div className="mix-blend-luminosity">
+          <Reveal delay={260}>
             <ParallaxImage
               src={whyUsTeam}
               alt="Premier EL Consult team collaborating"
@@ -85,8 +85,8 @@ export function HomeWhoAreWe() {
               wrapperClassName="aspect-[607/407] w-[calc(100%+1rem)] -mr-4 md:w-[calc(100%+var(--page-gutter))] md:-mr-[var(--page-gutter)]"
               className="object-cover object-center"
             />
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
 
       {/* Desktop: Figma 1440 composition — 120px gutters on text; image outside */}
