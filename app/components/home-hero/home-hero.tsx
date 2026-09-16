@@ -69,7 +69,7 @@ export function HomeHero() {
                     key={line}
                     className={cn(
                       "block",
-                      isLastLine && "whitespace-nowrap",
+                      isLastLine && "md:whitespace-nowrap",
                       !reduceMotion && "transition-[opacity,transform]",
                       visible
                         ? "translate-y-0 opacity-100"
