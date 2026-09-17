@@ -47,33 +47,35 @@ export function HomeWhoAreWe() {
             </p>
           </div>
         </Reveal>
-        <Reveal delay={140}>
-          <div className="flex max-w-[357px] flex-col gap-3">
-            <IconTarget />
-            <h3 className="text-xl leading-[1.2] font-bold text-neutral-900 md:text-2xl">
-              Our Vision.
-            </h3>
-            <p className="text-base leading-[1.3] text-neutral-700 md:text-lg">
-              To become the business transformation and leadership partner
-              organizations across Africa trust most the one people call when
-              they&apos;re serious about growth.
-            </p>
-          </div>
-        </Reveal>
-        <Reveal delay={200}>
-          <div className="flex max-w-[357px] flex-col gap-3">
-            <IconCompass />
-            <h3 className="text-xl leading-[1.2] font-bold text-neutral-900 md:text-2xl">
-              Our Mission
-            </h3>
-            <p className="text-base leading-[1.3] text-neutral-700 md:text-lg">
-              We help organizations, entrepreneurs, and leaders unlock what
-              they&apos;re capable of through strategy, coaching,
-              capability-building, and market-entry support that produces results
-              you can actually point to.
-            </p>
-          </div>
-        </Reveal>
+        <div className="grid gap-8 md:grid-cols-2 md:gap-6 lg:gap-10">
+          <Reveal delay={140}>
+            <div className="flex max-w-[357px] flex-col gap-3">
+              <IconTarget />
+              <h3 className="text-xl leading-[1.2] font-bold text-neutral-900 md:text-2xl">
+                Our Vision.
+              </h3>
+              <p className="text-base leading-[1.3] text-neutral-700 md:text-lg">
+                To become the business transformation and leadership partner
+                organizations across Africa trust most the one people call when
+                they&apos;re serious about growth.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="flex max-w-[357px] flex-col gap-3">
+              <IconCompass />
+              <h3 className="text-xl leading-[1.2] font-bold text-neutral-900 md:text-2xl">
+                Our Mission
+              </h3>
+              <p className="text-base leading-[1.3] text-neutral-700 md:text-lg">
+                We help organizations, entrepreneurs, and leaders unlock what
+                they&apos;re capable of through strategy, coaching,
+                capability-building, and market-entry support that produces
+                results you can actually point to.
+              </p>
+            </div>
+          </Reveal>
+        </div>
         <div className="mix-blend-luminosity">
           <Reveal delay={260}>
             <ParallaxImage
