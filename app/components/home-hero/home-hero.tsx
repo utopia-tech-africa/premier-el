@@ -69,7 +69,7 @@ export function HomeHero() {
                     key={line}
                     className={cn(
                       "block",
-                      isLastLine && "whitespace-nowrap",
+                      isLastLine && "md:whitespace-nowrap",
                       !reduceMotion && "transition-[opacity,transform]",
                       visible
                         ? "translate-y-0 opacity-100"
@@ -115,7 +115,7 @@ export function HomeHero() {
 
           <div
             className={cn(
-              "flex flex-wrap items-start gap-3",
+              "flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-start",
               !reduceMotion && "transition-[opacity,transform] delay-200",
               !isReady
                 ? cn("opacity-0", !reduceMotion && "translate-y-3")
@@ -136,7 +136,7 @@ export function HomeHero() {
               rel="noopener noreferrer"
               className={cn(
                 buttonVariants({ variant: "default" }),
-                "h-auto gap-2.5 rounded px-6 py-3 text-base font-normal transition-transform duration-[160ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
+                "h-auto w-full justify-center gap-2.5 rounded px-6 py-3 text-base font-normal transition-transform duration-[160ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] sm:w-auto"
               )}
             >
               Book a consultation
@@ -146,7 +146,7 @@ export function HomeHero() {
               href="/#services"
               className={cn(
                 buttonVariants({ variant: "secondary" }),
-                "h-auto gap-2.5 rounded px-6 py-3 text-base font-normal transition-transform duration-[160ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
+                "h-auto w-full justify-center gap-2.5 rounded px-6 py-3 text-base font-normal transition-transform duration-[160ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] sm:w-auto"
               )}
             >
               Explore our services

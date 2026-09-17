@@ -15,7 +15,7 @@ export type IntroPhase = "loading" | "exiting" | "ready";
 export const INTRO_LINES = [
   "Transforming Businesses.",
   "Developing Leaders.",
-  "Accelerating\u00A0Sustainable\u00A0Growth.",
+  "Accelerating Sustainable Growth.",
 ] as const;
 
 export const INTRO_LINE_STAGGER_MS = 850;

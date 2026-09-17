@@ -19,8 +19,8 @@ export function HomeWhoAreWe() {
         }}
       />
 
-      {/* Mobile / tablet: stacked — 120px gutters from md up; image bleeds right */}
-      <div className="relative flex flex-col gap-8 px-4 md:px-[var(--page-gutter)] lg:hidden">
+      {/* Stacked / wrapping layout below xl */}
+      <div className="relative flex flex-col gap-8 px-4 md:px-[var(--page-gutter)] xl:hidden">
         <Reveal>
           <h2 className="text-2xl leading-[1.2] font-bold text-neutral-900 md:text-3xl">
             Who are we?
@@ -74,7 +74,6 @@ export function HomeWhoAreWe() {
             </p>
           </div>
         </Reveal>
-        {/* Blend outside Reveal/parallax transforms so mix-blend isn't isolated */}
         <div className="mix-blend-luminosity">
           <Reveal delay={260}>
             <ParallaxImage
@@ -89,8 +88,8 @@ export function HomeWhoAreWe() {
         </div>
       </div>
 
-      {/* Desktop: Figma 1440 composition — 120px gutters on text; image outside */}
-      <div className="relative mx-auto hidden h-[662px] w-full lg:block">
+      {/* xl+: Figma 1440 composition — fixed positions, tight spacing */}
+      <div className="relative mx-auto hidden h-[662px] w-full xl:block">
         <div className="absolute top-0 right-[var(--page-gutter)] left-[var(--page-gutter)] flex items-start gap-[90px]">
           <Reveal>
             <h2 className="w-[493px] shrink-0 text-4xl leading-[1.2] font-bold text-neutral-900">
@@ -157,14 +156,7 @@ export function HomeWhoAreWe() {
         </Reveal>
       </div>
 
-      {/*
-        Desktop image — flush bottom-right.
-        Width shrinks with viewport so the left edge stays clear of Mission copy
-        (Mission ends ~783px from left with 120px gutters).
-      */}
-      <div
-        className="pointer-events-none absolute right-0 bottom-0 hidden aspect-[607/407] w-[clamp(15rem,calc(100vw-50rem),37.9375rem)] mix-blend-luminosity lg:block"
-      >
+      <div className="pointer-events-none absolute right-0 bottom-0 hidden aspect-[607/407] w-[clamp(15rem,calc(100vw-50rem),37.9375rem)] mix-blend-luminosity xl:block">
         <Reveal delay={260} className="pointer-events-auto h-full w-full">
           <ParallaxImage
             src={whyUsTeam}
